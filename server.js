@@ -12,9 +12,9 @@ const client = new faunadb.Client({
   secret: process.env.FAUNA_KEY
 });
 
-app.get('/', async (req, res) => {
+app.get('/product/:id', async (req, res) => {
   const response = await client.query(
-    q.Get(q.Ref(q.Collection('comercio'), '299596695499440642'))
+    q.Get(q.Ref(q.Collection('comercio'), req.params.id))
   )
   res.send(response)
 })
